@@ -77,7 +77,7 @@ pub fn part_two(input: &str) -> Option<u32> {
     Some(sum)
 }
 
-advent_of_code::main!(1);
+advent_of_code::main!("01");
 
 #[cfg(test)]
 mod tests {
@@ -85,13 +85,13 @@ mod tests {
 
     #[test]
     fn test_part_one() {
-        let result = part_one(&advent_of_code::template::read_file("examples", 1));
+        let result = part_one(&advent_of_code::template::read_file("examples", "01"));
         assert_eq!(result, Some(142));
     }
 
     #[test]
     fn test_part_two() {
-        let result = part_two(&advent_of_code::template::read_file("examples", 1));
+        let result = part_two(&advent_of_code::template::read_file("examples", "01-2"));
         assert_eq!(result, Some(281));
     }
 }

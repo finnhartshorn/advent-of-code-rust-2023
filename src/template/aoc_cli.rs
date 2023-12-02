@@ -43,7 +43,7 @@ pub fn read(day: u8) -> Result<Output, AocCommandError> {
             "--puzzle-file".into(),
             puzzle_path,
         ],
-        day,
+        &day.to_string(),
     );
 
     call_aoc_cli(&args)
@@ -62,7 +62,7 @@ pub fn download(day: u8) -> Result<Output, AocCommandError> {
             "--puzzle-file".into(),
             puzzle_path.to_string(),
         ],
-        day,
+        &day.to_string(),
     );
 
     let output = call_aoc_cli(&args)?;
@@ -72,7 +72,7 @@ pub fn download(day: u8) -> Result<Output, AocCommandError> {
     Ok(output)
 }
 
-pub fn submit(day: u8, part: u8, result: &str) -> Result<Output, AocCommandError> {
+pub fn submit(day: &str, part: u8, result: &str) -> Result<Output, AocCommandError> {
     // workaround: the argument order is inverted for submit.
     let mut args = build_args("submit", &[], day);
     args.push(part.to_string());
@@ -97,7 +97,7 @@ fn get_year() -> Option<u16> {
     }
 }
 
-fn build_args(command: &str, args: &[String], day: u8) -> Vec<String> {
+fn build_args(command: &str, args: &[String], day: &str) -> Vec<String> {
     let mut cmd_args = args.to_vec();
 
     if let Some(year) = get_year() {

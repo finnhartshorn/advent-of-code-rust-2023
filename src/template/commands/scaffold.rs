@@ -12,7 +12,7 @@ pub fn part_two(input: &str) -> Option<u32> {
     None
 }
 
-advent_of_code::main!(DAY);
+advent_of_code::main!("DAY");
 
 #[cfg(test)]
 mod tests {
@@ -20,13 +20,13 @@ mod tests {
 
     #[test]
     fn test_part_one() {
-        let result = part_one(&advent_of_code::template::read_file("examples", DAY));
+        let result = part_one(&advent_of_code::template::read_file("examples", "DAY"));
         assert_eq!(result, None);
     }
 
     #[test]
     fn test_part_two() {
-        let result = part_two(&advent_of_code::template::read_file("examples", DAY));
+        let result = part_two(&advent_of_code::template::read_file("examples", "DAY"));
         assert_eq!(result, None);
     }
 }
@@ -55,7 +55,7 @@ pub fn handle(day: u8) {
         }
     };
 
-    match file.write_all(MODULE_TEMPLATE.replace("DAY", &day.to_string()).as_bytes()) {
+    match file.write_all(MODULE_TEMPLATE.replace("DAY", &day_padded).as_bytes()) {
         Ok(()) => {
             println!("Created module file \"{}\"", &module_path);
         }
