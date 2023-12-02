@@ -3,7 +3,7 @@ use std::collections::HashMap;
 pub fn part_one(input: &str) -> Option<u32> {
     let mut sum: u32 = 0;
     for line in input.lines() {
-        let num_iter = line.chars().filter(|c| c.is_digit(10));
+        let num_iter = line.chars().filter(|c| c.is_ascii_digit());
         let first_num = num_iter.clone().next().unwrap();
         let second_num = num_iter.last().unwrap();
 
@@ -38,7 +38,7 @@ pub fn part_two(input: &str) -> Option<u32> {
 
         while slice_start < char_array.len() {
             if slice_start == slice_end {
-                if char_array[slice_start].is_digit(10) {
+                if char_array[slice_start].is_ascii_digit() {
                     if first_char == '!' {
                         first_char = char_array[slice_start];
                     }
