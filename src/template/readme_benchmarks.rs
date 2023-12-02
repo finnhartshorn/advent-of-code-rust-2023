@@ -29,7 +29,8 @@ pub struct TablePosition {
     pos_end: usize,
 }
 
-#[must_use] pub fn get_path_for_bin(day: usize) -> String {
+#[must_use]
+pub fn get_path_for_bin(day: usize) -> String {
     let day_padded = format!("{day:02}");
     format!("./src/bin/{day_padded}.rs")
 }
