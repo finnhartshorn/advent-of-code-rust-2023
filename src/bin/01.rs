@@ -53,16 +53,16 @@ pub fn part_two(input: &str) -> Option<u32> {
             }
 
             let pot_digit = string_to_digit.get(
-                    &*char_array[slice_start..slice_end]
-                        .iter()
-                        .collect::<String>(),
-                );
-                if let Some(num) = pot_digit {
-                    if first_char == '!' {
-                        first_char = *num;
-                    }
-                    second_char = *num;
+                &*char_array[slice_start..slice_end]
+                    .iter()
+                    .collect::<String>(),
+            );
+            if let Some(num) = pot_digit {
+                if first_char == '!' {
+                    first_char = *num;
                 }
+                second_char = *num;
+            }
 
             slice_end += 1;
             if slice_end > char_array.len() {
