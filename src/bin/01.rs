@@ -1,16 +1,14 @@
 use std::collections::HashMap;
 
 pub fn part_one(input: &str) -> Option<u32> {
-    let mut sum: u32 = 0;
-    for line in input.lines() {
+    Some(input.lines().map(|line| {
         let num_iter = line.chars().filter(|c| c.is_ascii_digit());
         let first_num = num_iter.clone().next().unwrap();
         let second_num = num_iter.last().unwrap();
 
-        let number = String::from(first_num) + &String::from(second_num);
-        sum += number.parse::<u32>().unwrap();
+        format!("{}{}", first_num, second_num).parse::<u32>().unwrap()
     }
-    Some(sum)
+    ).sum())
 }
 
 pub fn part_two(input: &str) -> Option<u32> {
