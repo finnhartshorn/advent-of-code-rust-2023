@@ -41,13 +41,11 @@ pub fn part_two(input: &str) -> Option<u32> {
         let mut slice_end = 0;
 
         while slice_start < char_array.len() {
-            if slice_start == slice_end {
-                if char_array[slice_start].is_ascii_digit() {
-                    if first_char == '!' {
-                        first_char = char_array[slice_start];
-                    }
-                    second_char = char_array[slice_start];
+            if slice_start == slice_end && char_array[slice_start].is_ascii_digit() {
+                if first_char == '!' {
+                    first_char = char_array[slice_start];
                 }
+                second_char = char_array[slice_start];
             }
 
             if slice_end - slice_start > 5 {
