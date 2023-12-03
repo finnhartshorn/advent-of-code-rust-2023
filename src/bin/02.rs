@@ -1,8 +1,8 @@
 pub fn part_one(input: &str) -> Option<u32> {
     let mut sum = 0;
-    let mut game_num = 1;
-    for line in input.lines() {
-        let mut possible = true;
+    let mut game_num = 0;
+    'outer: for line in input.lines() {
+        game_num += 1;
         let games: Vec<&str> = line.split(':').nth(1).unwrap().split(';').collect();
         for game in games {
             for draw in game.split(',') {
@@ -12,17 +12,17 @@ pub fn part_one(input: &str) -> Option<u32> {
                 match colour {
                     "red" => {
                         if number > 12 {
-                            possible = false
+                            continue 'outer;
                         }
                     }
                     "green" => {
                         if number > 13 {
-                            possible = false
+                            continue 'outer;
                         }
                     }
                     "blue" => {
                         if number > 14 {
-                            possible = false
+                            continue 'outer;
                         }
                     }
                     _ => println!("Error"),
@@ -30,10 +30,7 @@ pub fn part_one(input: &str) -> Option<u32> {
             }
         }
 
-        if possible {
-            sum += game_num;
-        }
-        game_num += 1;
+        sum += game_num;
     }
     Some(sum)
 }

@@ -1,14 +1,20 @@
 use std::collections::HashMap;
 
 pub fn part_one(input: &str) -> Option<u32> {
-    Some(input.lines().map(|line| {
-        let num_iter = line.chars().filter(|c| c.is_ascii_digit());
-        let first_num = num_iter.clone().next().unwrap();
-        let second_num = num_iter.last().unwrap();
+    Some(
+        input
+            .lines()
+            .map(|line| {
+                let num_iter = line.chars().filter(|c| c.is_ascii_digit());
+                let first_num = num_iter.clone().next().unwrap();
+                let second_num = num_iter.last().unwrap();
 
-        format!("{}{}", first_num, second_num).parse::<u32>().unwrap()
-    }
-    ).sum())
+                format!("{}{}", first_num, second_num)
+                    .parse::<u32>()
+                    .unwrap()
+            })
+            .sum(),
+    )
 }
 
 pub fn part_two(input: &str) -> Option<u32> {
@@ -70,7 +76,6 @@ pub fn part_two(input: &str) -> Option<u32> {
         }
         let number = String::from(first_char) + &String::from(second_char);
         sum += number.parse::<u32>().unwrap();
-        // println!("Total {}", number.parse::<u32>().unwrap())
     }
     Some(sum)
 }
