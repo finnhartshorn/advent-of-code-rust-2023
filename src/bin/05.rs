@@ -23,28 +23,6 @@ pub fn part_one(input: &str) -> Option<u32> {
     }).min()
 }
 
-pub fn part_one_backup(input: &str) -> Option<u32> {
-    let mut iter = input.split("\n\n").map(|x| x.split(":").nth(1).unwrap());
-    let seeds = iter.next().unwrap();
-    seeds.split_whitespace().map(|x| x.parse::<u32>().unwrap()).map(|s| {
-        let mut current_number = s;
-        let mut next_number = s;
-        iter.clone().for_each(|maps| {
-            maps.trim().lines().for_each(|mapper| {
-                let mut inner_itter = mapper.split_whitespace().map(|x| x.parse::<u32>().unwrap());
-                let start_dest= inner_itter.next().unwrap();
-                let start_source = inner_itter.next().unwrap();
-                let range = inner_itter.next().unwrap();
-                if let Some(n) = map_to_dest(start_source, start_dest, range, current_number) {
-                    next_number = n;
-                }
-            });
-            current_number = next_number;
-        });
-        next_number
-    }).min()
-}
-
 fn map_to_dest(start_source: u32, start_dest: u32, range: u32, value: u32) -> Option<u32> {
     if value >= start_source && value < start_source + range {
         Some(start_dest + value - start_source)
