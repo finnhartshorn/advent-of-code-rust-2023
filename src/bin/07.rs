@@ -3,25 +3,10 @@ use std::collections::HashMap;
 use phf::phf_map;
 
 static CARD_HEX: phf::Map<char, char> = phf_map! {
-    'A' => 'D',
-    'K' => 'C',
-    'Q' => 'B',
-    'J' => 'A',
-    'T' => '9',
-    '9' => '8',
-    '8' => '7',
-    '7' => '6',
-    '6' => '5',
-    '5' => '4',
-    '4' => '3',
-    '3' => '2',
-    '2' => '1',
-};
-
-static CARD_HEX_2: phf::Map<char, char> = phf_map! {
-    'A' => 'D',
-    'K' => 'C',
-    'Q' => 'B',
+    'A' => 'E',
+    'K' => 'D',
+    'Q' => 'C',
+    'J' => 'B',
     'T' => 'A',
     '9' => '9',
     '8' => '8',
@@ -31,7 +16,6 @@ static CARD_HEX_2: phf::Map<char, char> = phf_map! {
     '4' => '4',
     '3' => '3',
     '2' => '2',
-    'J' => '1',
 };
 
 struct Hand<'a> {
@@ -103,7 +87,7 @@ fn value(max: u32, second_max: u32) -> u32 {
     }
 }
 
-fn compute_rank_2(input: &str) -> u32 {
+fn compute_rank_with_wildcard(input: &str) -> u32 {
     let mut max = 0;
     let mut second_max = 0;
     let mut counting_map = HashMap::new();
@@ -121,7 +105,7 @@ fn compute_rank_2(input: &str) -> u32 {
             } else if counting_map[&c] > second_max {
                 second_max = counting_map[&c];
             }
-            CARD_HEX_2[&c]
+            CARD_HEX[&c]
         })
         .collect::<String>();
     i32::from_str_radix(
@@ -142,7 +126,7 @@ pub fn part_two(input: &str) -> Option<u32> {
             }
         })
         .collect::<Vec<Hand>>();
-    hands.sort_by_cached_key(|x| compute_rank_2(x.cards));
+    hands.sort_by_cached_key(|x| compute_rank_with_wildcard(x.cards));
     Some(
         hands
             .iter()
