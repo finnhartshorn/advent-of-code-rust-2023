@@ -60,7 +60,8 @@ fn check_adjacent(array: &Vec<Vec<char>>, x: usize, y: usize) -> bool {
     if x < array.len() - 1 && y > 0 && !not_symbols.contains(&array[x + 1][y - 1]) {
         return true;
     }
-    if x < array.len() - 1 && y < array[x].len() - 1 && !not_symbols.contains(&array[x + 1][y + 1]) {
+    if x < array.len() - 1 && y < array[x].len() - 1 && !not_symbols.contains(&array[x + 1][y + 1])
+    {
         return true;
     }
     false
